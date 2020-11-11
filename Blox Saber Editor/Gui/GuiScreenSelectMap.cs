@@ -50,7 +50,6 @@ namespace Sound_Space_Editor.Gui
 
         public override void Render(float delta, float mouseX, float mouseY)
         {
-            var size = EditorWindow.Instance.ClientSize;
             Glu.RenderTexturedQuad(ClientRectangle.Width / 2 - 400 / 2, ClientRectangle.Height / 2 - 300, 400, 400, 0, 0, 1, 1, logoTxt);
             base.Render(delta, mouseX, mouseY);
         }
