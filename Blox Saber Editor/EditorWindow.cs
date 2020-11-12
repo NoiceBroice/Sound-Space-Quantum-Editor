@@ -109,8 +109,6 @@ namespace Sound_Space_Editor
         public EditorWindow(long offset, string launcherDir) : base(1080, 600, new GraphicsMode(32, 8, 0, 8), "Sound Space Quantum Editor "+version)
         {
 			LauncherDir = launcherDir;
-			cacheFolder = Path.Combine(launcherDir, "cached/");
-			settingsFile = Path.Combine(launcherDir, "settings.ini");
             Instance = this;
             this.WindowState = OpenTK.WindowState.Maximized;
             Icon = Resources.icon;
@@ -124,7 +122,10 @@ namespace Sound_Space_Editor
 
             FontRenderer = new FontRenderer("main");
 
-            if (!File.Exists(settingsFile))
+			cacheFolder = Path.Combine(launcherDir, "cached/");
+			settingsFile = Path.Combine(launcherDir, "settings.ini");
+
+			if (!File.Exists(settingsFile))
             {
                 File.AppendAllText(settingsFile, "\n// Background Opacity (0-255, 0 means invisible)\n\n255\n\n// Track Opacity\n\n255\n\n// Grid Opacity\n\n255\n\n // You can search for 'rgb color picker' in Google to get rgb color values.\n// Color 1 (Text, BPM Lines)\n\n0,255,200\n\n// Color 2 (Checkboxes, Sliders, Numbers, BPM Lines)\n\n255,0,255\n\n// Note Colors\n\n255,0,255\n0,255,200");
             }

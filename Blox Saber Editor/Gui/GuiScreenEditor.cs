@@ -167,7 +167,7 @@ namespace Sound_Space_Editor.Gui
 			if (bgImg)
 			{
 				int res;
-				string bgdim = EditorWindow.Instance.ReadLine("settings.ini", 4);
+				string bgdim = EditorWindow.Instance.ReadLine(EditorWindow.Instance.settingsFile, 4);
 				Int32.TryParse(bgdim, out res);
 				GL.Color4(Color.FromArgb(res, 255, 255, 255));
 				Glu.RenderTexturedQuad(0, 0, size.Width, size.Height, 0, 0, 1, 1, _textureId);
@@ -178,13 +178,13 @@ namespace Sound_Space_Editor.Gui
 
 			// color 1
 
-				string rc1 = EditorWindow.Instance.ReadLine("settings.ini", 17);
+				string rc1 = EditorWindow.Instance.ReadLine(EditorWindow.Instance.settingsFile, 17);
 				string[] c1values = rc1.Split(',');
 				int[] Color1 = Array.ConvertAll<string, int>(c1values, int.Parse);
 
 			//color 2
 
-				string rc2 = EditorWindow.Instance.ReadLine("settings.ini", 21);
+				string rc2 = EditorWindow.Instance.ReadLine(EditorWindow.Instance.settingsFile, 21);
 				string[] c2values = rc2.Split(',');
 				int[] Color2 = Array.ConvertAll<string, int>(c2values, int.Parse);
 

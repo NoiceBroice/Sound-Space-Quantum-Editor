@@ -27,7 +27,7 @@ namespace Sound_Space_Editor.Gui
 			var mouseOver = false;
 			// grid transparency
 			int res;
-			string griddim = EditorWindow.Instance.ReadLine("settings.ini", 12);
+			string griddim = EditorWindow.Instance.ReadLine(EditorWindow.Instance.settingsFile, 12);
 			Int32.TryParse(griddim, out res);
 
 			GL.Color4(Color.FromArgb(res, 36, 35, 33));

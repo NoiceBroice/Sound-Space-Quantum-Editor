@@ -21,6 +21,8 @@ namespace Sound_Space_Editor
 				long offset = 0;
 
 				var launcherDir = Environment.CurrentDirectory;
+				var testDir = "C:\\Users\\Jayden J\\AppData\\Roaming\\SSQE\\";
+				//launcherDir = testDir;
 				if (args.Length > 0)
                 {
 					launcherDir = "";
@@ -37,18 +39,19 @@ namespace Sound_Space_Editor
                         }
                     }
                 }
+				MessageBox.Show(launcherDir);
 
 				w = new EditorWindow(offset, launcherDir);
+
+				using (w)
+				{
+					w.Run();
+				}
 			}
 			catch(Exception e)
 			{
 				MessageBox.Show(e.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
-			}
-
-			using (w)
-			{
-				w.Run();
 			}
 		}
 	}
