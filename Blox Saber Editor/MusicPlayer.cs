@@ -62,7 +62,7 @@ namespace Sound_Space_Editor
 			{
 				float val = 0;
 
-				Bass.ChannelGetAttribute(streamID, ChannelAttribute.Tempo, ref val);
+				Bass.ChannelGetAttribute(streamID, ChannelAttribute.Tempo, out val);
 
 				return -(val + 95) / 100;
 			}
@@ -75,7 +75,7 @@ namespace Sound_Space_Editor
 			{
 				float val = 1;
 
-				Bass.ChannelGetAttribute(streamID, ChannelAttribute.Volume, ref val);
+				Bass.ChannelGetAttribute(streamID, ChannelAttribute.Volume, out val);
 
 				return val;
 			}

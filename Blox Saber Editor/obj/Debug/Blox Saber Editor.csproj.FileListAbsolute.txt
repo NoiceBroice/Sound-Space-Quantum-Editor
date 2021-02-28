@@ -66,8 +66,6 @@ C:/Dev/SoundSpaceQuantum/Blox Saber Editor/obj/Debug/Blox Saber Editor.csproj.Co
 C:/Dev/SoundSpaceQuantum/Blox Saber Editor/obj/Debug/Blox Saber Editor.csproj.CopyComplete
 C:/Dev/SoundSpaceQuantum/Blox Saber Editor/obj/Debug/Sound Space Quantum Editor.exe
 C:/Dev/SoundSpaceQuantum/Blox Saber Editor/obj/Debug/Sound Space Quantum Editor.pdb
-/home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/x86/bassasio.dll
-/home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/x64/bassasio.dll
 /home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/ProgramDependencies/bass.dll
 /home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/ProgramDependencies/bassasio.dll
 /home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/ProgramDependencies/bass_fx.dll
@@ -76,9 +74,7 @@ C:/Dev/SoundSpaceQuantum/Blox Saber Editor/obj/Debug/Sound Space Quantum Editor.
 /home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/Sound Space Quantum Editor.exe.config
 /home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/Sound Space Quantum Editor.exe
 /home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/Sound Space Quantum Editor.pdb
-/home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/Bass.Net.dll
 /home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/OpenTK.dll
-/home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/Bass.Net.xml
 /home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/OpenTK.pdb
 /home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/OpenTK.xml
 /home/jayden/Documents/SSQE/Blox Saber Editor/obj/Debug/Blox Saber Editor.csprojAssemblyReference.cache
@@ -89,3 +85,35 @@ C:/Dev/SoundSpaceQuantum/Blox Saber Editor/obj/Debug/Sound Space Quantum Editor.
 /home/jayden/Documents/SSQE/Blox Saber Editor/obj/Debug/Blox Saber Editor.csproj.CopyComplete
 /home/jayden/Documents/SSQE/Blox Saber Editor/obj/Debug/Sound Space Quantum Editor.exe
 /home/jayden/Documents/SSQE/Blox Saber Editor/obj/Debug/Sound Space Quantum Editor.pdb
+/home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/ManagedBass.dll
+/home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/ManagedBass.Fx.dll
+/home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/Microsoft.Win32.Primitives.dll
+/home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/System.AppContext.dll
+/home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/System.Console.dll
+/home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/System.Diagnostics.DiagnosticSource.dll
+/home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/System.Diagnostics.Tracing.dll
+/home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/System.Globalization.Calendars.dll
+/home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/System.IO.Compression.dll
+/home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/System.IO.Compression.ZipFile.dll
+/home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/System.IO.dll
+/home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/System.IO.FileSystem.dll
+/home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/System.IO.FileSystem.Primitives.dll
+/home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/System.Net.Http.dll
+/home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/System.Net.Sockets.dll
+/home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/System.Reflection.dll
+/home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/System.Runtime.dll
+/home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/System.Runtime.Extensions.dll
+/home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/System.Runtime.InteropServices.dll
+/home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/System.Runtime.InteropServices.RuntimeInformation.dll
+/home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/System.Security.Cryptography.Algorithms.dll
+/home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/System.Security.Cryptography.Encoding.dll
+/home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/System.Security.Cryptography.Primitives.dll
+/home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/System.Security.Cryptography.X509Certificates.dll
+/home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/System.Xml.ReaderWriter.dll
+/home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/ManagedBass.xml
+/home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/System.Diagnostics.DiagnosticSource.xml
+/home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/ManagedBass.Fx.xml
+/home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/x86/bassasio.dll
+/home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/x64/bassasio.dll
+/home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/Bass.Net.dll
+/home/jayden/Documents/SSQE/Blox Saber Editor/bin/Debug/Bass.Net.xml
