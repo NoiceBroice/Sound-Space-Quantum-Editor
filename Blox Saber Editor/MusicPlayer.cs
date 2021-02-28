@@ -12,21 +12,21 @@ namespace Sound_Space_Editor
 
 		public MusicPlayer()
 		{
-			Bass.BASS_Init(-1, 44100, BASSInit.BASS_DEVICE_DEFAULT, IntPtr.Zero);
+			Bass.Init(-1, 44100, DeviceInitFlags.Default, IntPtr.Zero);
 		}
 
 		public void Load(string file)
 		{
-			var stream = Bass.BASS_StreamCreateFile(file, 0, 0, BASSFlag.BASS_STREAM_DECODE | BASSFlag.BASS_STREAM_PRESCAN | BASSFlag.BASS_FX_FREESOURCE);
+			var stream = Bass.CreateStream(file, 0, 0, BassFlags.Decode | BassFlags.Prescan | BassFlags.FxFreeSource);
 			var volume = Volume;
 			var tempo = Tempo;
 
-			Bass.BASS_StreamFree(streamID);
+			Bass.StreamFree(streamID);
 
-			Bass.BASS_SetConfig(BASSConfig.BASS_CONFIG_BUFFER, 250);
-			Bass.BASS_SetConfig(BASSConfig.BASS_CONFIG_UPDATEPERIOD, 5);
+			Bass.Configure(Configuration.PlaybackBufferLength, 250);
+			Bass.Configure(Configuration.UpdatePeriod, 5);
 
-			streamID = BassFx.BASS_FX_TempoCreate(stream, BASSFlag.BASS_STREAM_PRESCAN);
+			streamID = BassFx.TempoCreate(stream, BassFlags.Prescan);
 
 			Volume = volume;
 			Tempo = tempo;
@@ -36,33 +36,33 @@ namespace Sound_Space_Editor
 
 		public void Play()
 		{
-			Bass.BASS_ChannelPlay(streamID, false);
+			Bass.ChannelPlay(streamID, false);
 		}
 
 		public void Pause()
 		{
-			var pos = Bass.BASS_ChannelGetPosition(streamID, BASSMode.BASS_POS_BYTES);
+			var pos = Bass.ChannelGetPosition(streamID, PositionFlags.Bytes);
 
-			Bass.BASS_ChannelPause(streamID);
+			Bass.ChannelPause(streamID);
 
-			Bass.BASS_ChannelSetPosition(streamID, pos, BASSMode.BASS_POS_BYTES);
+			Bass.ChannelSetPosition(streamID, pos, PositionFlags.Bytes);
 		}
 
 		public void Stop()
 		{
-			Bass.BASS_ChannelStop(streamID);
+			Bass.ChannelStop(streamID);
 
-			Bass.BASS_ChannelSetPosition(streamID, 0, BASSMode.BASS_POS_BYTES);
+			Bass.ChannelSetPosition(streamID, 0, PositionFlags.Bytes);
 		}
 
 		public float Tempo
 		{
-			set => Bass.BASS_ChannelSetAttribute(streamID, BASSAttribute.BASS_ATTRIB_TEMPO, value * 100 - 100);
+			set => Bass.ChannelSetAttribute(streamID, ChannelAttribute.Tempo, value * 100 - 100);
 			get
 			{
 				float val = 0;
 
-				Bass.BASS_ChannelGetAttribute(streamID, BASSAttribute.BASS_ATTRIB_TEMPO, ref val);
+				Bass.ChannelGetAttribute(streamID, ChannelAttribute.Tempo, ref val);
 
 				return -(val + 95) / 100;
 			}
@@ -70,12 +70,12 @@ namespace Sound_Space_Editor
 
 		public float Volume
 		{
-			set => Bass.BASS_ChannelSetAttribute(streamID, BASSAttribute.BASS_ATTRIB_VOL, value);
+			set => Bass.ChannelSetAttribute(streamID, ChannelAttribute.Volume, value);
 			get
 			{
 				float val = 1;
 
-				Bass.BASS_ChannelGetAttribute(streamID, BASSAttribute.BASS_ATTRIB_VOL, ref val);
+				Bass.ChannelGetAttribute(streamID, ChannelAttribute.Volume, ref val);
 
 				return val;
 			}
@@ -88,15 +88,15 @@ namespace Sound_Space_Editor
 			CurrentTime = TimeSpan.Zero;
 		}
 		
-		public bool IsPlaying => Bass.BASS_ChannelIsActive(streamID) == BASSActive.BASS_ACTIVE_PLAYING;
-		public bool IsPaused => Bass.BASS_ChannelIsActive(streamID) == BASSActive.BASS_ACTIVE_PAUSED;
+		public bool IsPlaying => Bass.ChannelIsActive(streamID) == PlaybackState.Playing;
+		public bool IsPaused => Bass.ChannelIsActive(streamID) == PlaybackState.Paused;
 
 		public TimeSpan TotalTime
 		{
 			get
 			{
-				long len = Bass.BASS_ChannelGetLength(streamID, BASSMode.BASS_POS_BYTES);
-				var time = TimeSpan.FromSeconds(Bass.BASS_ChannelBytes2Seconds(streamID, len));
+				long len = Bass.ChannelGetLength(streamID, PositionFlags.Bytes);
+				var time = TimeSpan.FromSeconds(Bass.ChannelBytes2Seconds(streamID, len));
 
 				return time;
 			}
@@ -106,8 +106,8 @@ namespace Sound_Space_Editor
 		{
 			get
 			{
-				var pos = Bass.BASS_ChannelGetPosition(streamID, BASSMode.BASS_POS_BYTES);
-				var length = Bass.BASS_ChannelGetLength(streamID, BASSMode.BASS_POS_BYTES);
+				var pos = Bass.ChannelGetPosition(streamID, PositionFlags.Bytes);
+				var length = Bass.ChannelGetLength(streamID, PositionFlags.Bytes);
 
 				return TimeSpan.FromTicks((long)(TotalTime.Ticks * pos / (decimal)length));
 			}
@@ -115,9 +115,9 @@ namespace Sound_Space_Editor
 			{
 				//lock (locker)
 				{
-					var pos = Bass.BASS_ChannelSeconds2Bytes(streamID, value.TotalSeconds);
+					var pos = Bass.ChannelSeconds2Bytes(streamID, value.TotalSeconds);
 
-					Bass.BASS_ChannelSetPosition(streamID, pos, BASSMode.BASS_POS_BYTES);
+					Bass.ChannelSetPosition(streamID, pos, PositionFlags.Bytes);
 				}
 			}
 		}
@@ -126,8 +126,8 @@ namespace Sound_Space_Editor
 		{
 			get
 			{
-				var pos = Bass.BASS_ChannelGetPosition(streamID, BASSMode.BASS_POS_BYTES);
-				var length = Bass.BASS_ChannelGetLength(streamID, BASSMode.BASS_POS_BYTES);
+				var pos = Bass.ChannelGetPosition(streamID, PositionFlags.Bytes);
+				var length = Bass.ChannelGetLength(streamID, PositionFlags.Bytes);
 
 				return pos / (decimal)length;
 			}
@@ -135,7 +135,7 @@ namespace Sound_Space_Editor
 
 		public void Dispose()
 		{
-			Bass.BASS_Free();
+			Bass.Free();
 		}
 	}
 }

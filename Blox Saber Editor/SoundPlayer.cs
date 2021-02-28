@@ -5,7 +5,7 @@ using ManagedBass.Fx;
 
 namespace Sound_Space_Editor
 {
-    class SoundPlayer : IDisposable
+	class SoundPlayer : IDisposable
 	{
 		private readonly Dictionary<string, string> _sounds = new Dictionary<string, string>();
 
@@ -23,21 +23,21 @@ namespace Sound_Space_Editor
 		{
 			if (_sounds.TryGetValue(id, out var sound))
             {
-                var s = Bass.CreateStream(sound, 0, 0, BASSFlag.BASS_STREAM_DECODE | BASSFlag.BASS_STREAM_PRESCAN | BASSFlag.BASS_FX_FREESOURCE);//sound, 0, 0, BASSFlag.BASS_STREAM_AUTOFREE);
+                var s = Bass.CreateStream(sound, 0, 0, BassFlags.Decode | BassFlags.Prescan | BassFlags.FxFreeSource);//sound, 0, 0, BASSFlag.BASS_STREAM_AUTOFREE);
 				
-				s = (s, BASSFlag.BASS_STREAM_PRESCAN | BASSFlag.BASS_STREAM_AUTOFREE);
+				s = BassFx.TempoCreate(s, BassFlags.Prescan | BassFlags.AutoFree);
 
-				Bass.BASS_ChannelSetAttribute(s, BASSAttribute.BASS_ATTRIB_VOL, volume);
-				Bass.BASS_ChannelSetAttribute(s, BASSAttribute.BASS_ATTRIB_TEMPO_PITCH, (pitch - 1) * 60);
+				Bass.ChannelSetAttribute(s, ChannelAttribute.Volume, volume);
+				Bass.ChannelSetAttribute(s, ChannelAttribute.Pitch, (pitch - 1) * 60);
 
 				//Bass.BASS_ChannelPlay(sound, false);
-				Bass.BASS_ChannelPlay(s, false);
+				Bass.ChannelPlay(s, false);
 			}
 		}
 
 		public void Dispose()
 		{
-			Bass.BASS_Free();
+			Bass.Free();
 		}
 	}
 }
