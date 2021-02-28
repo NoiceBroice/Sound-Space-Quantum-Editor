@@ -16,35 +16,19 @@ namespace Sound_Space_Editor
 
 			EditorWindow w;
 
-			try
-			{
+			//try
+			//{
 				long offset = 0;
 
 				var launcherDir = Environment.CurrentDirectory;
-				if (args.Length > 0)
-                {
-					launcherDir = "";
-					var i = 0;
-					foreach (string argument in args.ToList<string>())
-                    {
-						i++;
-						if (i == 1)
-                        {
-							launcherDir = argument;
-                        } else
-                        {
-							launcherDir += " " + argument;
-                        }
-                    }
-                }
 
 				w = new EditorWindow(offset, launcherDir);
-			}
-			catch(Exception e)
-			{
-				MessageBox.Show(e.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				return;
-			}
+			//}
+			//catch(Exception e)
+			//{
+			//	MessageBox.Show(e.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			//	return;
+			//}
 
 			using (w)
 			{
