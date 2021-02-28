@@ -1,6 +1,6 @@
 ﻿using System;
-using Un4seen.Bass;
-using Un4seen.Bass.AddOn.Fx;
+using ManagedBass;
+using ManagedBass.Fx;
 
 namespace Sound_Space_Editor
 {
