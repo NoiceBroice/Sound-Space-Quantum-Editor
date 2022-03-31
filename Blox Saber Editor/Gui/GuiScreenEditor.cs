@@ -65,6 +65,7 @@ namespace Sound_Space_Editor.Gui
 		public readonly GuiButton HFlip;
 		public readonly GuiButton VFlip;
 
+		public readonly GuiButton TestFromHere;
 		public readonly GuiButton OptionsNav;
 		public readonly GuiButton TimingNav;
 		public readonly GuiButton PatternsNav;
@@ -247,6 +248,7 @@ namespace Sound_Space_Editor.Gui
 			HFlip = new GuiButton(11, 0, 0, 128, 32, "HORIZONTAL FLIP", false);
 			VFlip = new GuiButton(12, 0, 0, 128, 32, "VERTICAL FLIP", false);
 
+			TestFromHere = new GuiButton(69420, 0, 0, 200, 50, "TEST FROM HERE", false);
 			OptionsNav = new GuiButton(15, 0, 0, 200, 50, "OPTIONS >", false);
 			TimingNav = new GuiButton(16, 0, 0, 200, 50, "TIMING >", false);
 			PatternsNav = new GuiButton(17, 0, 0, 200, 50, "PATTERNS >", false);
@@ -340,6 +342,7 @@ namespace Sound_Space_Editor.Gui
 			Buttons.Add(BezierStoreButton);
 			Buttons.Add(HFlip);
 			Buttons.Add(VFlip);
+			Buttons.Add(TestFromHere);
 			Buttons.Add(OptionsNav);
 			Buttons.Add(TimingNav);
 			Buttons.Add(PatternsNav);
@@ -436,15 +439,15 @@ namespace Sound_Space_Editor.Gui
 			if (rl)
             {
 				zoomW = fr.GetWidth("Zoom~ ", 24);
-				fr.Render("Zoom~ ", (int)OptionsNav.ClientRectangle.Right + 10, (int)OptionsNav.ClientRectangle.Y, 24);
+				fr.Render("Zoom~ ", (int)TestFromHere.ClientRectangle.Right + 10, (int)TestFromHere.ClientRectangle.Y, 24);
 			}
 			else
             {
-				fr.Render("Zoom: ", (int)OptionsNav.ClientRectangle.Right + 10, (int)OptionsNav.ClientRectangle.Y, 24);
+				fr.Render("Zoom: ", (int)TestFromHere.ClientRectangle.Right + 10, (int)TestFromHere.ClientRectangle.Y, 24);
 			}
 			
 			GL.Color3(Color2);
-			fr.Render($"{Math.Round(EditorWindow.Instance.Zoom, 2) * 100}%", (int)OptionsNav.ClientRectangle.Right + zoomW + 10, (int)OptionsNav.ClientRectangle.Y, 24);
+			fr.Render($"{Math.Round(EditorWindow.Instance.Zoom, 2) * 100}%", (int)TestFromHere.ClientRectangle.Right + zoomW + 10, (int)TestFromHere.ClientRectangle.Y, 24);
 			GL.Color3(Color1);
 
 			var th = 64 + (32 - TrackHeight.Value);
@@ -761,6 +764,8 @@ namespace Sound_Space_Editor.Gui
         {
 			//button placement
 			var heightdiff = EditorWindow.Instance.ClientSize.Height / 1080f;
+
+			OptionsNav.ClientRectangle.Y = TestFromHere.ClientRectangle.Bottom + 10 * heightdiff;
 			TimingNav.ClientRectangle.Y = OptionsNav.ClientRectangle.Bottom + 10 * heightdiff;
 			PatternsNav.ClientRectangle.Y = TimingNav.ClientRectangle.Bottom + 10 * heightdiff;
 
@@ -802,6 +807,7 @@ namespace Sound_Space_Editor.Gui
 			ScaleButton.Visible = false;
 
 			//button text
+			TestFromHere.Text = "TEST FROM HERE";
 			OptionsNav.Text = "OPTIONS >";
 			TimingNav.Text = "TIMING >";
 			PatternsNav.Text = "PATTERNS >";
@@ -1203,6 +1209,12 @@ namespace Sound_Space_Editor.Gui
 						EditorWindow.Instance._draggedNotes = EditorWindow.Instance.SelectedNotes;
                     }
 					break;
+				case 69420:
+
+
+
+
+					break;
 			}
 		}
 
@@ -1240,9 +1252,10 @@ namespace Sound_Space_Editor.Gui
 			var widthdiff = size.Width / 1920f;
 			var heightdiff = size.Height / 1080f;
 
-			OptionsNav.ClientRectangle.Size = new SizeF(400 * widthdiff, 50 * heightdiff);
-			TimingNav.ClientRectangle.Size = OptionsNav.ClientRectangle.Size;
-			PatternsNav.ClientRectangle.Size = OptionsNav.ClientRectangle.Size;
+			TestFromHere.ClientRectangle.Size = new SizeF(400 * widthdiff, 50 * heightdiff);
+			OptionsNav.ClientRectangle.Size = TestFromHere.ClientRectangle.Size;
+			TimingNav.ClientRectangle.Size = TestFromHere.ClientRectangle.Size;
+			PatternsNav.ClientRectangle.Size = TestFromHere.ClientRectangle.Size;
 
 			//timing
 			Offset.ClientRectangle.Size = new SizeF(128 * widthdiff, 40 * heightdiff);
@@ -1290,11 +1303,12 @@ namespace Sound_Space_Editor.Gui
 			MSBoundLower.ClientRectangle.Size = JumpMSButton.ClientRectangle.Size;
 			MSBoundHigher.ClientRectangle.Size = JumpMSButton.ClientRectangle.Size;
 			SelectBound.ClientRectangle.Size = JumpMSButton.ClientRectangle.Size;
-			
 
-			OptionsNav.ClientRectangle.Location = new PointF(10 * widthdiff, Track.ClientRectangle.Bottom + 60);
-			TimingNav.ClientRectangle.Location = new PointF(OptionsNav.ClientRectangle.X, OptionsNav.ClientRectangle.Bottom + 10 * heightdiff);
-			PatternsNav.ClientRectangle.Location = new PointF(OptionsNav.ClientRectangle.X, TimingNav.ClientRectangle.Bottom + 10 * heightdiff);
+
+			TestFromHere.ClientRectangle.Location = new PointF(10 * widthdiff, Track.ClientRectangle.Bottom + 60);
+			OptionsNav.ClientRectangle.Location = new PointF(TestFromHere.ClientRectangle.X, TestFromHere.ClientRectangle.Bottom + 10 * heightdiff);
+			TimingNav.ClientRectangle.Location = new PointF(TestFromHere.ClientRectangle.X, OptionsNav.ClientRectangle.Bottom + 10 * heightdiff);
+			PatternsNav.ClientRectangle.Location = new PointF(TestFromHere.ClientRectangle.X, TimingNav.ClientRectangle.Bottom + 10 * heightdiff);
 
 			//timing
 			Offset.ClientRectangle.Location = new PointF(OptionsNav.ClientRectangle.X, TimingNav.ClientRectangle.Bottom + 40 * heightdiff);

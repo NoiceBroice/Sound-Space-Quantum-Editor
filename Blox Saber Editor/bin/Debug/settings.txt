@@ -156,6 +156,6 @@
           255,
           200
      ],
-     "trackOpacity": 255,
+     "trackOpacity": 50,
      "waveform": true
 }
