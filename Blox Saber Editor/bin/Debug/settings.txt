@@ -152,9 +152,9 @@
           255
      ],
      "noteColor2": [
-          0,
           255,
-          200
+          255,
+          255
      ],
      "trackOpacity": 50,
      "waveform": true

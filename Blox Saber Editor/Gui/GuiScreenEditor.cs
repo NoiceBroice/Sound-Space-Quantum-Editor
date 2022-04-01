@@ -1229,7 +1229,7 @@ namespace Sound_Space_Editor.Gui
 				/*	EditorWindow.Instance.Notes.Clear();
 					EditorWindow.Instance.SelectedNotes.Clear();
 					EditorWindow.Instance.MusicPlayer.Reset();
-					EditorWindow.Instance.UpdateActivity("Testing a Map"); maybe dont do this*/
+					EditorWindow.Instance.UpdateActivity("Testing a Map"); maybe dont do this			yeah definitely dont*/
 					
 					//think i should like make this wait for the things to happen before then happen but i dont feel like thinking about it and too dumb to know how to
 
@@ -1243,7 +1243,6 @@ namespace Sound_Space_Editor.Gui
                         try
                         {
 							Console.WriteLine(EditorWindow.Instance._file); //(note for my small head) gives full directory of curMap editing
-							Program display = null;
 							var task = new Thread(() => {
 								using (BloxSaber bloxSaber = new BloxSaber())
 								{
