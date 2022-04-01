@@ -289,7 +289,7 @@ namespace Blox_Saber_The_Game
 		// Token: 0x06000073 RID: 115 RVA: 0x00004C64 File Offset: 0x00002E64
 		private void UpdateCamera(float delta)
 		{
-			if (this.Camera.Fov > 70f)
+			if (this.Camera.Fov > 140f)
 			{
 				this.Camera.Fov = Math.Max(70f, this.Camera.Fov - delta * 2f * 10f);
 				this.Camera.CalculateProjection();
