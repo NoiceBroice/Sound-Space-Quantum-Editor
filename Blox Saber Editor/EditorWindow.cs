@@ -96,7 +96,7 @@ namespace Sound_Space_Editor
 
 		private bool _wasPlaying;
 
-		private string _file;
+		public string _file;
 
 		private string _soundId = "-1";
 		public float tempo = 1f;
@@ -1427,6 +1427,39 @@ namespace Sound_Space_Editor
 				Notes.AddAll(notes);
 			});
 		}
+		//fuck you, you literally dont have something i can just call to save???
+		public void SaveMap()
+        {
+			if (GuiScreen is GuiScreenEditor editor)
+			{
+
+
+				if (_file == null)
+				{
+					var wasPlaying = MusicPlayer.IsPlaying;
+
+					if (wasPlaying)
+						MusicPlayer.Pause();
+
+					if (PromptSave())
+					{
+						editor.ShowToast("SAVED", Color1);
+						currentData = ParseData(false);
+					}
+
+					if (wasPlaying)
+						MusicPlayer.Play();
+				}
+				else
+				{
+					if (WriteFile(_file))
+					{
+						editor.ShowToast("SAVED", Color1);
+						currentData = ParseData(false);
+					}
+				}
+			}
+		}
 
 		protected override void OnKeyDown(KeyboardKeyEventArgs e)
 		{
@@ -1460,30 +1493,7 @@ namespace Sound_Space_Editor
 						_draggedNotes = Notes.ToList();
 						return;
 					case "Save":
-						if (_file == null)
-						{
-							var wasPlaying = MusicPlayer.IsPlaying;
-
-							if (wasPlaying)
-								MusicPlayer.Pause();
-
-							if (PromptSave())
-							{
-								editor.ShowToast("SAVED", Color1);
-								currentData = ParseData(false);
-							}
-
-							if (wasPlaying)
-								MusicPlayer.Play();
-						}
-						else
-						{
-							if (WriteFile(_file))
-							{
-								editor.ShowToast("SAVED", Color1);
-								currentData = ParseData(false);
-							}
-						}
+						SaveMap();
 						return;
 					case "SaveAs":
 						var wasPlaying1 = MusicPlayer.IsPlaying;

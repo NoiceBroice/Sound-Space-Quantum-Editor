@@ -135,8 +135,41 @@
     <Compile Include="BPMTapper.Designer.cs">
       <DependentUpon>BPMTapper.cs</DependentUpon>
     </Compile>
+    <Compile Include="BSTG\BloxSaber.cs" />
+    <Compile Include="BSTG\Camera.cs" />
+    <Compile Include="BSTG\ColorSequence.cs" />
+    <Compile Include="BSTG\Cube.cs" />
+    <Compile Include="BSTG\Face.cs" />
+    <Compile Include="BSTG\GameManager.cs" />
+    <Compile Include="BSTG\GameMap.cs" />
+    <Compile Include="BSTG\GameSettings.cs" />
+    <Compile Include="BSTG\Glu.cs" />
+    <Compile Include="BSTG\GuiRenderer.cs" />
+    <Compile Include="BSTG\gui\Gui.cs" />
+    <Compile Include="BSTG\gui\GuiButton.cs" />
+    <Compile Include="BSTG\gui\GuiScreen.cs" />
+    <Compile Include="BSTG\gui\GuiScreenLoading.cs" />
+    <Compile Include="BSTG\gui\MapButton.cs" />
+    <Compile Include="BSTG\InputManager.cs" />
+    <Compile Include="BSTG\Mathf.cs" />
+    <Compile Include="BSTG\Model.cs" />
+    <Compile Include="BSTG\ModelManager.cs" />
+    <Compile Include="BSTG\MusicPlayer.cs" />
+    <Compile Include="BSTG\Note.cs" />
+    <Compile Include="BSTG\ObjModel.cs" />
+    <Compile Include="BSTG\ObjMtl.cs" />
+    <Compile Include="BSTG\Particle.cs" />
+    <Compile Include="BSTG\ParticleManager.cs" />
+    <Compile Include="BSTG\SecureWebClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BSTG\Shader.cs" />
+    <Compile Include="BSTG\SoundPlayer.cs" />
+    <Compile Include="BSTG\TextureManager.cs" />
+    <Compile Include="BSTG\Vertex.cs" />
     <Compile Include="EditorSettings.cs" />
     <Compile Include="Gui\GuiScreenKeybinds.cs" />
+    <Compile Include="Gui\GuiScreenLoadCreate.cs" />
     <Compile Include="Gui\GuiScreenSettings.cs" />
     <Compile Include="Gui\GuiScreenTimings.cs" />
     <Compile Include="Timing Setup Panel.cs">
@@ -207,8 +240,67 @@
     <None Include="Help\BassNet.chm" />
     <None Include="OpenTK.dll.config" />
     <None Include="packages.config" />
+    <None Include="ProgramDependencies\assets\cached\1091083826.asset" />
+    <None Include="ProgramDependencies\assets\cached\1100552247.asset" />
+    <None Include="ProgramDependencies\assets\cached\1131624146.asset" />
+    <None Include="ProgramDependencies\assets\cached\1211205709.asset" />
+    <None Include="ProgramDependencies\assets\cached\1223456.asset" />
+    <None Include="ProgramDependencies\assets\cached\1224359066.asset" />
+    <None Include="ProgramDependencies\assets\cached\123456.asset" />
+    <None Include="ProgramDependencies\assets\cached\1241225380.asset" />
+    <None Include="ProgramDependencies\assets\cached\1254121.asset" />
+    <None Include="ProgramDependencies\assets\cached\142670244.asset" />
+    <None Include="ProgramDependencies\assets\cached\153628992.asset" />
+    <None Include="ProgramDependencies\assets\cached\165065112.asset" />
+    <None Include="ProgramDependencies\assets\cached\1784512071.asset" />
+    <None Include="ProgramDependencies\assets\cached\181761264.asset" />
+    <None Include="ProgramDependencies\assets\cached\192360508.asset" />
+    <None Include="ProgramDependencies\assets\cached\2043069299.asset" />
+    <None Include="ProgramDependencies\assets\cached\2112578134.asset" />
+    <None Include="ProgramDependencies\assets\cached\213559002.asset" />
+    <None Include="ProgramDependencies\assets\cached\225700806.asset" />
+    <None Include="ProgramDependencies\assets\cached\257065805.asset" />
+    <None Include="ProgramDependencies\assets\cached\2667067386.asset" />
+    <None Include="ProgramDependencies\assets\cached\2683531584.asset" />
+    <None Include="ProgramDependencies\assets\cached\2859051942.asset" />
+    <None Include="ProgramDependencies\assets\cached\3102976503.asset" />
+    <None Include="ProgramDependencies\assets\cached\31124566.asset" />
+    <None Include="ProgramDependencies\assets\cached\3219747582.asset" />
+    <None Include="ProgramDependencies\assets\cached\3224657.asset" />
+    <None Include="ProgramDependencies\assets\cached\3340674075.asset" />
+    <None Include="ProgramDependencies\assets\cached\3369407590.asset" />
+    <None Include="ProgramDependencies\assets\cached\337742747.asset" />
+    <None Include="ProgramDependencies\assets\cached\342381165.asset" />
+    <None Include="ProgramDependencies\assets\cached\3476595500.asset" />
+    <None Include="ProgramDependencies\assets\cached\3507000883.asset" />
+    <None Include="ProgramDependencies\assets\cached\3515959328.asset" />
+    <None Include="ProgramDependencies\assets\cached\3533419187.asset" />
+    <None Include="ProgramDependencies\assets\cached\428452967.asset" />
+    <None Include="ProgramDependencies\assets\cached\4500444800.asset" />
+    <None Include="ProgramDependencies\assets\cached\4513267.asset" />
+    <None Include="ProgramDependencies\assets\cached\4541179648.asset" />
+    <None Include="ProgramDependencies\assets\cached\4646533700.asset" />
+    <None Include="ProgramDependencies\assets\cached\4708142164.asset" />
+    <None Include="ProgramDependencies\assets\cached\484515179.asset" />
+    <None Include="ProgramDependencies\assets\cached\491090544.asset" />
+    <None Include="ProgramDependencies\assets\cached\4965452940.asset" />
+    <None Include="ProgramDependencies\assets\cached\4976356068.asset" />
+    <None Include="ProgramDependencies\assets\cached\5624387.asset" />
+    <None Include="ProgramDependencies\assets\cached\5894848084.asset" />
+    <None Include="ProgramDependencies\assets\cached\6600129516.asset" />
+    <None Include="ProgramDependencies\assets\cached\758304140.asset" />
+    <None Include="ProgramDependencies\assets\cached\82376.asset" />
+    <None Include="ProgramDependencies\assets\cached\833804133.asset" />
+    <None Include="ProgramDependencies\assets\cached\882108716.asset" />
+    <None Include="ProgramDependencies\assets\cached\8838355729.asset" />
+    <None Include="ProgramDependencies\assets\cached\9072408500.asset" />
     <None Include="ProgramDependencies\assets\fonts\main.ttf" />
     <None Include="ProgramDependencies\assets\fonts\SourceSans.ttf" />
+    <None Include="ProgramDependencies\assets\models\note.obj" />
+    <None Include="ProgramDependencies\assets\models\notewish.obj" />
+    <None Include="ProgramDependencies\assets\models\note_left.obj" />
+    <None Include="ProgramDependencies\assets\models\note_right.obj" />
+    <None Include="ProgramDependencies\assets\shaders\note.fsh" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -225,6 +317,8 @@
   <ItemGroup>
     <Content Include="Blox Saber.ico" />
     <Content Include="icon.ico" />
+    <Content Include="ProgramDependencies\assets\shaders\note.vsh" />
+    <None Include="ProgramDependencies\assets\sounds\death.wav" />
     <None Include="ProgramDependencies\assets\sounds\click.wav" />
     <None Include="ProgramDependencies\assets\sounds\hit.wav" />
     <None Include="ProgramDependencies\assets\textures\widgets.png" />
@@ -248,7 +342,9 @@
     <None Include="Resources\BackgroundImage.png" />
     <None Include="Resources\icon.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ProgramDependencies\assets\levels\" />
+  </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
       <Visible>False</Visible>

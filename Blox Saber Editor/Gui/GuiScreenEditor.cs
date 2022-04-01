@@ -12,6 +12,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Numerics;
+using Blox_Saber_The_Game;
+using Blox_Saber_The_Game.gui;
 
 namespace Sound_Space_Editor.Gui
 {
@@ -807,7 +809,7 @@ namespace Sound_Space_Editor.Gui
 			ScaleButton.Visible = false;
 
 			//button text
-			TestFromHere.Text = "TEST FROM HERE";
+			TestFromHere.Text = "SAVE & TEST FROM HERE";
 			OptionsNav.Text = "OPTIONS >";
 			TimingNav.Text = "TIMING >";
 			PatternsNav.Text = "PATTERNS >";
@@ -1210,9 +1212,55 @@ namespace Sound_Space_Editor.Gui
                     }
 					break;
 				case 69420:
+					/*hmmm idk how this should really be done        i'll just get it to function you can clean it later if you accept it
+					 * ig i gotta clear this window then bring it back when testing is over (whether held r or they play til the fucking end for some god forsaken reason)
+					 * but then undo will be no more and i would want it to still be there after testing to probably undo some bullshittery  
+					 * 
+					 * wait fucking brilliant i can just copy button id 3 THE BACK TO MENU FUCKING BUTTON and not clear undo (me when i see things) i hope thats how it works
+					 * just hope they dont hit undo or lock it	uhhhhhhh	i think ill go with hoping for now      again if thats how it works
+					btw i have no fucking clue what im doing
+					-BatBrice :) */
 
+					if (EditorWindow.Instance.MusicPlayer.IsPlaying)
+						EditorWindow.Instance.MusicPlayer.Pause();
+					//how do i do like the save thing         i literally made it a map wipe button what do i do
+					//fuck then i have to make them choose a file or make one to save it in and shit if its not real unless you guys are good boys and did it for me
+					EditorWindow.Instance.SaveMap();//honestly terrible cmon
+				/*	EditorWindow.Instance.Notes.Clear();
+					EditorWindow.Instance.SelectedNotes.Clear();
+					EditorWindow.Instance.MusicPlayer.Reset();
+					EditorWindow.Instance.UpdateActivity("Testing a Map"); maybe dont do this*/
+					
+					//think i should like make this wait for the things to happen before then happen but i dont feel like thinking about it and too dumb to know how to
 
+					//wait where do i find the current map
+					
 
+					/*when i come back - basically i bricked the whole thing and it doesnt even start anymore have fun
+					i just imported the rest of bstg cus fuck it we gon have two different types of a lot of cs files that prolly do VERY similar things but whatever roll with it*/
+					void ToLoadForTest()
+					{
+                        try
+                        {
+							Console.WriteLine(EditorWindow.Instance._file); //(note for my small head) gives full directory of curMap editing
+							Program display = null;
+							var task = new Thread(() => {
+								using (BloxSaber bloxSaber = new BloxSaber())
+								{
+									bloxSaber.Run();
+								}
+							});
+							task.Start();
+
+						}
+                        catch (Exception e)
+						{
+							MessageBox.Show(e.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+						}
+						
+					}
+					ToLoadForTest();
+					//for now EditorWindow.Instance.OpenGuiScreen(new GuiScreenMenu());
 
 					break;
 			}
