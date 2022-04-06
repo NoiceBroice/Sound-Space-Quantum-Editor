@@ -31,6 +31,9 @@ namespace Sound_Space_Editor
 		public static int AutosaveInterval = 5;
 		public static bool CorrectOnCopy = true;
 
+		//BSTG
+		public static bool Camlock = true;
+
 		public static KeyType SelectAll = new KeyType() { Key = Key.A, CTRL = true, SHIFT = false, ALT = false };
 		public static KeyType Save = new KeyType() { Key = Key.S, CTRL = true, SHIFT = false, ALT = false };
 		public static KeyType SaveAs = new KeyType() { Key = Key.S, CTRL = true, SHIFT = true, ALT = false };
@@ -93,6 +96,9 @@ namespace Sound_Space_Editor
 					AutosaveInterval = value;
 				if (result.TryGetValue("correctOnCopy", out value))
 					CorrectOnCopy = value;
+
+				if (result.TryGetValue("camlock", out value))
+					Camlock = value;
 
 				if (result.TryGetValue("keybinds", out value))
                 {
@@ -200,6 +206,8 @@ namespace Sound_Space_Editor
 			EnableAutosave = true;
 			AutosaveInterval = 5;
 			CorrectOnCopy = true;
+
+			Camlock = true;
 		}
 
 		public static void RefreshKeymapping()
@@ -252,6 +260,7 @@ namespace Sound_Space_Editor
 				{"enableAutosave", EnableAutosave},
 				{"autosaveInterval",AutosaveInterval},
 				{"correctOnCopy",CorrectOnCopy},
+				{"camlock", Camlock},
 				{"keybinds", new JsonObject(Array.Empty<KeyValuePair<string, JsonValue>>()) {
 					{"selectAll", new JsonArray(SelectAll.Key.ToString(), SelectAll.CTRL, SelectAll.SHIFT, SelectAll.ALT)},
 					{"save", new JsonArray(Save.Key.ToString(), Save.CTRL, Save.SHIFT, Save.ALT)},

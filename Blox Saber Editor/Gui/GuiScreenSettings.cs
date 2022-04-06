@@ -35,6 +35,8 @@ namespace Sound_Space_Editor.Gui
 		private GuiCheckBox WaveformCheckbox;
 		//private GuiCheckBox BPMFormCheckbox;
 
+		private GuiCheckBox CamlockCheckbox;
+
 		private GuiTextBox EditorBGOpacityTextBox;
 		private GuiTextBox GridOpacityTextBox;
 		private GuiTextBox TrackOpacityTextBox;
@@ -87,8 +89,11 @@ namespace Sound_Space_Editor.Gui
 			WaveformCheckbox = new GuiCheckBox(9, "Waveform", 0, 0, 72, 72, 32, EditorSettings.Waveform);
 			//BPMFormCheckbox = new GuiCheckBox(9, "Use Timings Form", 0, 0, 72, 72, 32, EditorSettings.BPMForm);
 			AutosaveCheckbox = new GuiCheckBox(9, "Enable Autosave", 0, 0, 72, 72, 32, EditorSettings.EnableAutosave);
-
 			CorrectOnCopy = new GuiCheckBox(9, "Correct Errors on Copy", 0, 0, 72, 72, 32, EditorSettings.CorrectOnCopy);
+			CamlockCheckbox = new GuiCheckBox(9, "Camlock", 0, 0, 72, 72, 32, EditorSettings.Camlock);
+
+
+
 
 			Buttons.Add(_openFolderButton);
 			Buttons.Add(_resetButton);
@@ -96,6 +101,9 @@ namespace Sound_Space_Editor.Gui
 			Buttons.Add(_keybindsButton);
 			Buttons.Add(WaveformCheckbox);
 			//Buttons.Add(BPMFormCheckbox);
+
+			Buttons.Add(CamlockCheckbox);
+
 			Buttons.Add(AutosaveCheckbox);
 			Buttons.Add(CorrectOnCopy);
 			Buttons.Add(Color1Picker);
@@ -210,14 +218,22 @@ namespace Sound_Space_Editor.Gui
 			NoteColor1Picker.ClientRectangle.Size = new SizeF(200 * widthdiff, 50 * heightdiff);
 			NoteColor2Picker.ClientRectangle.Size = new SizeF(200 * widthdiff, 50 * heightdiff);
 
-			WaveformCheckbox.ClientRectangle.Location = new PointF(1435 * widthdiff, 195 * heightdiff);
-			EditorBGOpacityTextBox.ClientRectangle.Location = new PointF(1435 * widthdiff, 360 * heightdiff);
+			WaveformCheckbox.ClientRectangle.Location = new PointF(1050 * widthdiff, 195 * heightdiff);
+			EditorBGOpacityTextBox.ClientRectangle.Location = new PointF(WaveformCheckbox.ClientRectangle.X, 360 * heightdiff);
 
 			WaveformCheckbox.ClientRectangle.Size = new SizeF(72 * widthdiff, 72 * heightdiff);
 			EditorBGOpacityTextBox.ClientRectangle.Size = new SizeF(200 * widthdiff, 50 * heightdiff);
 
-			GridOpacityTextBox.ClientRectangle.Location = new PointF(1435 * widthdiff, 510 * heightdiff);
-			TrackOpacityTextBox.ClientRectangle.Location = new PointF(1435 * widthdiff, 660 * heightdiff);
+			CamlockCheckbox.ClientRectangle.Location = new PointF(1450 * widthdiff, 195 * heightdiff);
+			EditorBGOpacityTextBox.ClientRectangle.Location = new PointF(WaveformCheckbox.ClientRectangle.X, 360 * heightdiff);
+
+			CamlockCheckbox.ClientRectangle.Size = new SizeF(72 * widthdiff, 72 * heightdiff);
+			EditorBGOpacityTextBox.ClientRectangle.Size = new SizeF(200 * widthdiff, 50 * heightdiff);
+
+
+
+			GridOpacityTextBox.ClientRectangle.Location = new PointF(WaveformCheckbox.ClientRectangle.X, 510 * heightdiff);
+			TrackOpacityTextBox.ClientRectangle.Location = new PointF(WaveformCheckbox.ClientRectangle.X, 660 * heightdiff);
 
 			GridOpacityTextBox.ClientRectangle.Size = new SizeF(200 * widthdiff, 50 * heightdiff);
 			TrackOpacityTextBox.ClientRectangle.Size = new SizeF(200 * widthdiff, 50 * heightdiff);
@@ -225,7 +241,7 @@ namespace Sound_Space_Editor.Gui
 			AutosaveInterval.ClientRectangle.Size = new SizeF(200 * widthdiff, 50 * heightdiff);
 			AutosaveCheckbox.ClientRectangle.Size = new SizeF(72 * widthdiff, 72 * heightdiff);
 
-			AutosaveInterval.ClientRectangle.Location = new PointF(ClientRectangle.Width / 2 - AutosaveInterval.ClientRectangle.Width / 2, 360 * heightdiff);
+			AutosaveInterval.ClientRectangle.Location = new PointF(550 * widthdiff, 360 * heightdiff);
 			AutosaveCheckbox.ClientRectangle.Location = new PointF(AutosaveInterval.ClientRectangle.X, 195 * heightdiff);
 
 			CorrectOnCopy.ClientRectangle.Size = new SizeF(72 * widthdiff, 72 * heightdiff);
@@ -417,6 +433,9 @@ namespace Sound_Space_Editor.Gui
 					EditorSettings.NoteColor2 = notecolor2;
 					EditorSettings.Waveform = WaveformCheckbox.Toggle;
 					//EditorSettings.BPMForm = BPMFormCheckbox.Toggle;
+
+					EditorSettings.Camlock = CamlockCheckbox.Toggle;
+
 					EditorSettings.EnableAutosave = AutosaveCheckbox.Toggle;
 					EditorSettings.CorrectOnCopy = CorrectOnCopy.Toggle;
 					EditorSettings.SaveSettings();
@@ -432,6 +451,9 @@ namespace Sound_Space_Editor.Gui
 					notecolor1 = Color.FromArgb(255, 0, 255);
 					notecolor2 = Color.FromArgb(0, 255, 200);
 					EditorSettings.Waveform = true;
+
+					EditorSettings.Camlock = true;
+
 					EditorSettings.EnableAutosave = true;
 					//EditorSettings.BPMForm = false;
 					EditorBGOpacityTextBox.Text = "255";
@@ -497,6 +519,9 @@ namespace Sound_Space_Editor.Gui
 					EditorSettings.NoteColor1 = notecolor1;
 					EditorSettings.NoteColor2 = notecolor2;
 					EditorSettings.Waveform = WaveformCheckbox.Toggle;
+
+					EditorSettings.Camlock = CamlockCheckbox.Toggle;
+
 					//EditorSettings.BPMForm = BPMFormCheckbox.Toggle;
 					EditorSettings.EnableAutosave = AutosaveCheckbox.Toggle;
 					EditorSettings.CorrectOnCopy = CorrectOnCopy.Toggle;

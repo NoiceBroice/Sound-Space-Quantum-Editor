@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using OpenTK;
 using OpenTK.Graphics;
@@ -23,7 +24,7 @@ namespace Blox_Saber_The_Game
 		// (get) Token: 0x06000020 RID: 32 RVA: 0x000027EC File Offset: 0x000009EC
 		// (set) Token: 0x06000021 RID: 33 RVA: 0x000027F3 File Offset: 0x000009F3
 		public static Model CubeModel { get; private set; }
-
+		public static Model CursorModel { get; private set; }
 		// Token: 0x17000006 RID: 6
 		// (get) Token: 0x06000022 RID: 34 RVA: 0x000027FB File Offset: 0x000009FB
 		public MusicPlayer MusicPlayer { get; }
@@ -98,21 +99,27 @@ namespace Blox_Saber_The_Game
 		}
 
 		// Token: 0x06000032 RID: 50 RVA: 0x00002B48 File Offset: 0x00000D48
-		public void LoadMap(string map)
+		public void LoadMap(string map, double ms)
 		{
 			this.Cleanup();
 			this.Map = GameMap.Load(map);
-			this.MusicPlayer.Load(this.GetAudio(this.Map.SongId));
+			this.MusicPlayer.Load(this.GetAudio(this.Map.SongId), ms);
 			this.MusicPlayer.Volume = 0.04f;
+		}
+		public void SetMusic(double ms)
+		{
+			this.MusicPlayer.Set(ms);
+
 		}
 
 		// Token: 0x06000033 RID: 51 RVA: 0x00002B88 File Offset: 0x00000D88
-		public void LoadMapFile(string file)
+		public void LoadMapFile(string file, double ms)
 		{
 			this.Cleanup();
 			this.Map = GameMap.LoadFile(file);
-			this.MusicPlayer.Load(this.GetAudio(this.Map.SongId));
+			this.MusicPlayer.Load(this.GetAudio(this.Map.SongId),ms);
 			this.MusicPlayer.Volume = 0.04f;
+			this._songLoaded = true;
 		}
 
 		// Token: 0x06000034 RID: 52 RVA: 0x00002BC8 File Offset: 0x00000DC8
@@ -157,6 +164,15 @@ namespace Blox_Saber_The_Game
 			num = Math.Min(num, this._cubeSize.Z / GameManager.CubeModel.Size.Z);
 			this._modelScale = Matrix4.CreateScale(num);
 		}
+		public void SetCursorStyle(string name)
+		{
+			GameManager.CursorModel = BloxSaber.Instance.ModelManager.GetModel(name);
+			float num = 1f;
+			num = Math.Min(num, this._cubeSize.X / GameManager.CursorModel.Size.X);
+			num = Math.Min(num, this._cubeSize.Y / GameManager.CursorModel.Size.Y);
+			num = Math.Min(num, this._cubeSize.Z / GameManager.CursorModel.Size.Z);
+			this._modelScale = Matrix4.CreateScale(num);
+		}
 
 		// Token: 0x06000037 RID: 55 RVA: 0x00002D1E File Offset: 0x00000F1E
 		public void Update()
@@ -177,6 +193,7 @@ namespace Blox_Saber_The_Game
 					this.OnEnded(false);
 				}
 				BloxSaber.Instance.Camera.UploadOrtho();
+
 				GL.Disable(EnableCap.DepthTest);
 				GL.Color4(1f, 0f, 0.65f, this._stopTimer);
 				//BloxSaber.Instance.FontRenderer.RenderCentered("GIVING UP", BloxSaber.Instance.Width / 2, BloxSaber.Instance.Height / 2 - 75, 150);
@@ -188,7 +205,11 @@ namespace Blox_Saber_The_Game
 				GL.End();
 				GL.LineWidth(1f);
 				GL.Enable(EnableCap.DepthTest);
-				BloxSaber.Instance.Camera.UploadProjection();
+				if (!BloxSaber.Instance.camlock)
+				{
+					BloxSaber.Instance.Camera.UploadProjection();
+				}
+                
 			}
 			else
 			{
@@ -196,11 +217,15 @@ namespace Blox_Saber_The_Game
 			}
 			if (this._gameRunning)
 			{
-				this.MoveCubes(delta);
-				if (!this.MusicPlayer.IsPlaying && this._songStarted && this._noteIndex == this.Map.Notes.Count)
-				{
+			//	Task.Wait(200f)
+				if (this._songLoaded)
+                {
+					this.MoveCubes(delta);
+                }	
+				/*if (!this.MusicPlayer.IsPlaying && this._songStarted && this._noteIndex == this.Map.Notes.Count)					this literally is just to trigger it to stop at the end but breaks when starting in a certain position
+				{																													just hold r to exit			(or hit the x or alt+f4 ig)
 					this.OnEnded(true);
-				}
+				}*/
 			}
 			GameManager.CubeShader.Bind();
 			GameManager.CubeModel.Bind();
@@ -224,7 +249,10 @@ namespace Blox_Saber_The_Game
 			GameManager.CubeShader.Unbind();
 			this.ParticleManager.Render((double)delta);
 		}
-
+		public void DoCubeMoveIt(float delta)
+        {
+			MoveCubes(delta);
+        }
 		// Token: 0x06000039 RID: 57 RVA: 0x00003048 File Offset: 0x00001248
 		private void MoveCubes(float delta)
 		{
@@ -277,13 +305,13 @@ namespace Blox_Saber_The_Game
 			this._saberPos = new Vector3(x, y, 0f);
 			Vector3 vector2 = this._saberPos - Vector3.UnitZ * 0.01f;
 			Vector4 vec = this.Hue((float)(DateTime.Now.TimeOfDay.TotalSeconds % 3.0) / 3f);
-			Matrix4 left = Matrix4.CreateScale(Math.Min(Math.Min(Math.Min(1f, this._saberSize.X / GameManager.CubeModel.Size.X), this._saberSize.Y / GameManager.CubeModel.Size.Y), (this._saberSize.Z + 0.05f) / GameManager.CubeModel.Size.Z));
+			Matrix4 left = Matrix4.CreateScale(Math.Min(Math.Min(Math.Min(1f, this._saberSize.X / GameManager.CursorModel.Size.X), this._saberSize.Y / GameManager.CursorModel.Size.Y), (this._saberSize.Z + 0.05f) / GameManager.CursorModel.Size.Z));
 			GameManager.CubeShader.Bind();
-			GameManager.CubeModel.Bind();
+			GameManager.CursorModel.Bind();
 			GameManager.CubeShader.SetMatrix4("transformationMatrix", left * Matrix4.CreateTranslation(vector2));
 			GameManager.CubeShader.SetVector4("colorIn", vec);
-			GameManager.CubeModel.Render();
-			GameManager.CubeModel.Unbind();
+			GameManager.CursorModel.Render();
+			GameManager.CursorModel.Unbind();
 			GameManager.CubeShader.Unbind();
 		}
 
@@ -392,6 +420,8 @@ namespace Blox_Saber_The_Game
 
 		// Token: 0x0400002D RID: 45
 		private bool _gameRunning;
+
+		private bool _songLoaded;
 
 		// Token: 0x0400002E RID: 46
 		private bool _songStarted;

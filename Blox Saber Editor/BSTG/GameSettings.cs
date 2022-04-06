@@ -103,9 +103,9 @@ namespace Blox_Saber_The_Game
 		{
 			GameSettings.Sensitivity = 0.085f;
 			GameSettings.FPSCap = 0f;
-			GameSettings.RenderGrid = true;
-			GameSettings.HitParticles = true;
-			GameSettings.HitFov = true;
+			GameSettings.RenderGrid = false;
+			GameSettings.HitParticles = false;
+			GameSettings.HitFov = false;
 		}
 
 		// Token: 0x06000014 RID: 20 RVA: 0x000025BC File Offset: 0x000007BC

@@ -73,28 +73,46 @@ namespace Blox_Saber_The_Game
 			GL.CullFace(CullFaceMode.Back);
 			base.CursorGrabbed = false;
 			base.CursorVisible = false;
-			this.GameManager.OnHitNote += this.OnHitNote;
+		//	this.GameManager.OnHitNote += this.OnHitNote;
 			this.GameManager.OnGameEnded += this.OnGameEnded;
 			this.LoadSounds();
 			this.LoadModels();
 			this.GameManager.Init();
 			this.GameManager.SetCubeStyle("note");
+			this.GameManager.SetCursorStyle("square");
 			this.WindowState = WindowState.Fullscreen;
 			this.OnFocusedChanged(EventArgs.Empty);
 			base.TargetRenderFrequency = (double)GameSettings.FPSCap;
 			if (File.Exists(this._mapFile))
 			{
-				this.GuiRenderer.OpenScreen(new GuiScreenLoading());
-				Task.Run(delegate()
+
+				//this.GuiRenderer.OpenScreen(new GuiScreenLoading());
+				Task dothe = Task.Run(delegate()
+				{	
+					this.QueueMainThread(delegate
+					{
+						this.GameManager.LoadMapFile(this._mapFile, EditorWindow.Instance.currentTime.TotalMilliseconds);
+						this.Camera.ResetCamera();
+						if (camlock)
+						{
+							//this.Camera.CamView();
+							//this.Camera.CalculateProjection();
+							this.Camera.UploadProjection();
+							this.RenderEnvironment(this.GetEnvironmentColor());
+						}
+					});
+				
+				});
+				Task.WaitAll(dothe); //this is all kind of a joke i dont think it works but maybe
+				Task dothe2 = Task.Run(delegate ()
 				{
-					this.GameManager.LoadMapFile(this._mapFile);
 					this.QueueMainThread(delegate
 					{
 						this.GuiRenderer.OpenScreen(null);
-						this.Camera.ResetCamera();
 						this.GameManager.Start();
 					});
 				});
+
 				return;
 			}
 	
@@ -114,9 +132,11 @@ namespace Blox_Saber_The_Game
 			ObjModel objModel = ObjModel.FromFile("assets/models/note.obj");
 			ObjModel objModel2 = ObjModel.FromFile("assets/models/note_left.obj");
 			ObjModel objModel3 = ObjModel.FromFile("assets/models/note_right.obj");
+			ObjModel objModel4 = ObjModel.FromFile("assets/models/square.obj");
 			this.ModelManager.RegisterModel("note", objModel.GetVertexes(), null, null, true);
 			this.ModelManager.RegisterModel("note_left", objModel2.GetVertexes(), null, null, false);
 			this.ModelManager.RegisterModel("note_right", objModel3.GetVertexes(), null, null, false);
+			this.ModelManager.RegisterModel("square", objModel4.GetVertexes(), null, null, true);
 			this.ModelManager.RegisterModel("quad3d", new float[]
 			{
 				0f,
@@ -139,9 +159,19 @@ namespace Blox_Saber_The_Game
 				0f
 			}, null, null, false);
 		}
+		public void FuckIT()
+        {
+			base.Close();
+        }
+        protected override void OnClosed(EventArgs e)
+        {
+			Sound_Space_Editor.Gui.GuiScreenEditor.testin = false;
+			this.GameManager.MusicPlayer.Stop();
+            base.OnClosed(e);
+        }
 
-		// Token: 0x0600006D RID: 109 RVA: 0x000045F2 File Offset: 0x000027F2
-		protected override void OnUpdateFrame(FrameEventArgs e)
+        // Token: 0x0600006D RID: 109 RVA: 0x000045F2 File Offset: 0x000027F2
+        protected override void OnUpdateFrame(FrameEventArgs e)
 		{
 			this._tickTimer -= base.TargetUpdatePeriod;
 			this.GameManager.Update();
@@ -183,7 +213,10 @@ namespace Blox_Saber_The_Game
 			{
 				this.GameManager.Render((float)e.Time);
 				this.RenderEnvironment(environmentColor);
-				this.Camera.UploadOrtho();
+				if (!camlock)
+				{
+					this.Camera.UploadOrtho();
+				}
 				GL.Disable(EnableCap.DepthTest);
 				GL.Color3(0f, 1f, 0f);
 				//this.FontRenderer.Render(this._fps.ToString("##,###") + " FPS", 0, 0, 30);
@@ -289,14 +322,17 @@ namespace Blox_Saber_The_Game
 		// Token: 0x06000073 RID: 115 RVA: 0x00004C64 File Offset: 0x00002E64
 		private void UpdateCamera(float delta)
 		{
-			if (this.Camera.Fov > 140f)
+			if (this.Camera.Fov > 70f)
 			{
 				this.Camera.Fov = Math.Max(70f, this.Camera.Fov - delta * 2f * 10f);
 				this.Camera.CalculateProjection();
 			}
 			this.Camera.CalculateView();
-			this.Camera.UploadView();
-			this.Camera.UploadProjection();
+			if (!camlock)
+			{
+				this.Camera.UploadView();
+				this.Camera.UploadProjection();
+			}
 		}
 
 		// Token: 0x06000074 RID: 116 RVA: 0x00004CE0 File Offset: 0x00002EE0
@@ -457,6 +493,8 @@ namespace Blox_Saber_The_Game
 
 		// Token: 0x04000054 RID: 84
 		private readonly int _cursorTexture;
+
+		public bool camlock = EditorSettings.Camlock;
 
 		
 	}

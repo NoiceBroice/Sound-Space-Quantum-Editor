@@ -22,6 +22,7 @@ namespace Sound_Space_Editor.Gui
 		public GuiScreen GuiScreen { get; private set; }
 
 		private List<GuiTextBox> Boxes = new List<GuiTextBox>();
+		public static bool testin;
 
 		public readonly GuiGrid Grid = new GuiGrid(300, 300);
 		public readonly GuiTrack Track = new GuiTrack(0, 80);
@@ -1225,42 +1226,64 @@ namespace Sound_Space_Editor.Gui
 						EditorWindow.Instance.MusicPlayer.Pause();
 					//how do i do like the save thing         i literally made it a map wipe button what do i do
 					//fuck then i have to make them choose a file or make one to save it in and shit if its not real unless you guys are good boys and did it for me
-					EditorWindow.Instance.SaveMap();//honestly terrible cmon
-				/*	EditorWindow.Instance.Notes.Clear();
-					EditorWindow.Instance.SelectedNotes.Clear();
-					EditorWindow.Instance.MusicPlayer.Reset();
-					EditorWindow.Instance.UpdateActivity("Testing a Map"); maybe dont do this			yeah definitely dont*/
-					
+
+					/*	EditorWindow.Instance.Notes.Clear();
+						EditorWindow.Instance.SelectedNotes.Clear();
+						EditorWindow.Instance.MusicPlayer.Reset();
+						EditorWindow.Instance.UpdateActivity("Testing a Map"); maybe dont do this			yeah definitely dont*/
+
 					//think i should like make this wait for the things to happen before then happen but i dont feel like thinking about it and too dumb to know how to
 
 					//wait where do i find the current map
-					
 
 					/*when i come back - basically i bricked the whole thing and it doesnt even start anymore have fun
 					i just imported the rest of bstg cus fuck it we gon have two different types of a lot of cs files that prolly do VERY similar things but whatever roll with it*/
-					void ToLoadForTest()
+		
+					bool noteAfter=false;
+					if (EditorWindow.Instance.Notes[EditorWindow.Instance.Notes.Count-1].Ms > EditorWindow.Instance.currentTime.TotalMilliseconds)
 					{
-                        try
+						noteAfter = true;
+					}
+					if (noteAfter)
+					{
+                        if (testin)
                         {
-							Console.WriteLine(EditorWindow.Instance._file); //(note for my small head) gives full directory of curMap editing
-							var task = new Thread(() => {
+							BloxSaber.Instance.FuckIT();
+                        }
+						//this stupid shit since you have to be a certain amount of ms from the last note so it doesnt just game end  //if you ever fix stupid shit make sure i didnt make -1 to notes to trigger gameend in bloxsaber
+						//ok suddenly sex no longer fixes the issue
+						//var sex = new Note(0, 0, (long)EditorWindow.Instance.totalTime.TotalMilliseconds+1500);
+						//EditorWindow.Instance.Notes.Add(sex);
+						EditorWindow.Instance.SaveMap();//honestly terrible cmon
+						try
+						{
+							Thread testing = new Thread(() =>
+							{
 								using (BloxSaber bloxSaber = new BloxSaber())
 								{
 									bloxSaber.Run();
+									//BloxSaber.Instance.GameManager.SetMusic(EditorWindow.Instance.currentTime.TotalMilliseconds);
 								}
 							});
-							task.Start();
-
+							Console.WriteLine(testing.ThreadState);
+							Console.WriteLine(EditorWindow.Instance._file); //(note for my small head) gives full directory of curMap editing
+							testing.Start();
+							testin = true;
 						}
-                        catch (Exception e)
+						catch (Exception e)
 						{
 							MessageBox.Show(e.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 						}
-						
+						//save after removing stupid shit
+						//EditorWindow.Instance.Notes.Remove(sex);
+						//EditorWindow.Instance.SaveMap();
 					}
-					ToLoadForTest();
+                    else
+                    {
+						ShowToast("NO NOTES BEYOND THIS POINT", Color.FromArgb(255, 110, 0));
+					}
+					//ToLoadForTest();
 					//for now EditorWindow.Instance.OpenGuiScreen(new GuiScreenMenu());
-
 					break;
 			}
 		}

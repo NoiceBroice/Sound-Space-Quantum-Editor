@@ -1,5 +1,6 @@
 {
      "autosaveInterval": 5,
+     "camlock": true,
      "color1": [
           128,
           255,

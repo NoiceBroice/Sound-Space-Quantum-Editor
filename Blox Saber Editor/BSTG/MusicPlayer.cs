@@ -14,7 +14,7 @@ namespace Blox_Saber_The_Game
 		}
 
 		// Token: 0x0600007F RID: 127 RVA: 0x00005118 File Offset: 0x00003318
-		public void Load(string file)
+		public void Load(string file, double ms)
 		{
 			int channel = Bass.BASS_StreamCreateFile(file, 0L, 0L, BASSFlag.BASS_STREAM_PRESCAN | BASSFlag.BASS_STREAM_DECODE | BASSFlag.BASS_SAMPLE_OVER_VOL);
 			float volume = this.Volume;
@@ -25,7 +25,7 @@ namespace Blox_Saber_The_Game
 			this._streamId = BassFx.BASS_FX_TempoCreate(channel, BASSFlag.BASS_STREAM_PRESCAN);
 			this.Volume = volume;
 			this.Tempo = tempo;
-			this.Reset();
+			this.Set(ms);
 		}
 
 		// Token: 0x06000080 RID: 128 RVA: 0x00005188 File Offset: 0x00003388
@@ -90,6 +90,12 @@ namespace Blox_Saber_The_Game
 			this.Stop();
 			this.CurrentTime = TimeSpan.Zero;
 		}
+		public void Set(double ms)
+		{
+			this.Stop();
+			this.CurrentTime = TimeSpan.FromMilliseconds(ms);
+		}
+
 
 		// Token: 0x1700000F RID: 15
 		// (get) Token: 0x06000088 RID: 136 RVA: 0x0000529A File Offset: 0x0000349A

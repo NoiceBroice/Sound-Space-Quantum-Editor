@@ -41,12 +41,19 @@ namespace Blox_Saber_The_Game
 			this.Pos = -Vector3.UnitZ * 3.5f + this.LookVec * new Vector3(1.25f, 1.25f, 0f);
 			this._view = Matrix4.CreateTranslation(-this.Pos) * matrix;
 		}
+		public void CamView()
+        {
+			Matrix4 matrix = Matrix4.CreateRotationY(this.RotY) * Matrix4.CreateRotationX(this.RotX);
+			this.LookVec = (matrix * -Vector4.UnitZ).Xyz;
+			this.Pos = -Vector3.UnitZ * 3.5f + this.LookVec * new Vector3(1.25f, 1.25f, 0f);
+			this._caml = Matrix4.CreateTranslation(-this.Pos) * matrix;
+		}
 
-		// Token: 0x06000008 RID: 8 RVA: 0x000021C0 File Offset: 0x000003C0
+			// Token: 0x06000008 RID: 8 RVA: 0x000021C0 File Offset: 0x000003C0
 		public void CalculateProjection()
 		{
-			this._projection = Matrix4.CreatePerspectiveFieldOfView(MathHelper.DegreesToRadians(this.Fov), (float)BloxSaber.Instance.Size.Width / (float)BloxSaber.Instance.Size.Height, 0.1f, 1000f);
-			this._ortho = Matrix4.CreateOrthographicOffCenter(0f, (float)BloxSaber.Instance.Width, (float)BloxSaber.Instance.Height, 0f, 0f, 1f);
+				this._projection = Matrix4.CreatePerspectiveFieldOfView(MathHelper.DegreesToRadians(this.Fov), (float)BloxSaber.Instance.Size.Width / (float)BloxSaber.Instance.Size.Height, 0.1f, 1000f);
+				this._ortho = Matrix4.CreateOrthographicOffCenter(0f, (float)BloxSaber.Instance.Width, (float)BloxSaber.Instance.Height, 0f, 0f, 1f);
 		}
 
 		// Token: 0x06000009 RID: 9 RVA: 0x0000224C File Offset: 0x0000044C
@@ -81,16 +88,21 @@ namespace Blox_Saber_The_Game
 			this.RotY = 3.1415927f;
 			this.CalculateView();
 			this.UploadView();
+            if (BloxSaber.Instance.camlock)
+            {
+				this.CamView();
+            }
 		}
 
 		// Token: 0x04000001 RID: 1
 		private Matrix4 _ortho;
 
 		// Token: 0x04000002 RID: 2
-		private Matrix4 _projection;
+		public Matrix4 _projection;
 
 		// Token: 0x04000003 RID: 3
-		private Matrix4 _view;
+		public Matrix4 _view;
+		public Matrix4 _caml;
 
 		// Token: 0x04000004 RID: 4
 		private int _lastX;
