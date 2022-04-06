@@ -249,10 +249,6 @@ namespace Blox_Saber_The_Game
 			GameManager.CubeShader.Unbind();
 			this.ParticleManager.Render((double)delta);
 		}
-		public void DoCubeMoveIt(float delta)
-        {
-			MoveCubes(delta);
-        }
 		// Token: 0x06000039 RID: 57 RVA: 0x00003048 File Offset: 0x00001248
 		private void MoveCubes(float delta)
 		{
