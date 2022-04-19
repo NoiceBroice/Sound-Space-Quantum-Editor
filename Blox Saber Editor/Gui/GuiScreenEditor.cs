@@ -1240,7 +1240,7 @@ namespace Sound_Space_Editor.Gui
 					i just imported the rest of bstg cus fuck it we gon have two different types of a lot of cs files that prolly do VERY similar things but whatever roll with it*/
 		
 					bool noteAfter=false;
-					if (EditorWindow.Instance.Notes[EditorWindow.Instance.Notes.Count-1].Ms > EditorWindow.Instance.currentTime.TotalMilliseconds)
+					if ((EditorWindow.Instance.Notes.Count>=1) && EditorWindow.Instance.Notes[EditorWindow.Instance.Notes.Count-1].Ms > EditorWindow.Instance.currentTime.TotalMilliseconds)
 					{
 						noteAfter = true;
 					}
@@ -1255,28 +1255,35 @@ namespace Sound_Space_Editor.Gui
 						//var sex = new Note(0, 0, (long)EditorWindow.Instance.totalTime.TotalMilliseconds+1500);
 						//EditorWindow.Instance.Notes.Add(sex);
 						EditorWindow.Instance.SaveMap();//honestly terrible cmon
-						try
+						if (EditorWindow.Instance._file != null)
 						{
-							Thread testing = new Thread(() =>
+							try
 							{
-								using (BloxSaber bloxSaber = new BloxSaber())
+								Thread testing = new Thread(() =>
 								{
-									bloxSaber.Run();
+									using (BloxSaber bloxSaber = new BloxSaber())
+									{
+										bloxSaber.Run();
 									//BloxSaber.Instance.GameManager.SetMusic(EditorWindow.Instance.currentTime.TotalMilliseconds);
 								}
-							});
-							Console.WriteLine(testing.ThreadState);
-							Console.WriteLine(EditorWindow.Instance._file); //(note for my small head) gives full directory of curMap editing
-							testing.Start();
-							testin = true;
+								});
+								Console.WriteLine(testing.ThreadState);
+								Console.WriteLine(EditorWindow.Instance._file); //(note for my small head) gives full directory of curMap editing
+								testing.Start();
+								testin = true;
+							}
+							catch (Exception e)
+							{
+								MessageBox.Show(e.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+							}
+							//save after removing stupid shit
+							//EditorWindow.Instance.Notes.Remove(sex);
+							//EditorWindow.Instance.SaveMap();
 						}
-						catch (Exception e)
-						{
-							MessageBox.Show(e.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        else
+                        {
+							ShowToast("SAVE FAILED", Color.FromArgb(255, 110, 0));
 						}
-						//save after removing stupid shit
-						//EditorWindow.Instance.Notes.Remove(sex);
-						//EditorWindow.Instance.SaveMap();
 					}
                     else
                     {
