@@ -1,5 +1,17 @@
 ----------------------------------
-     -- 1.8.2 - 26/3/2021 --
+     -- 1.8.3 - 25/4/2022 --
+
+- actually fixed creating maps with differently named audios
+- added .asset to the file import filter
+- fixed the wrong colors being used for note colors
+- slightly adjusted the tempo offset curve
+- added a button to import audio files directly in the create map window
+- reverted some timing point window functions to pre 1.8
+- pressing the delete keybind while a timing point is selected on the track now deletes that point
+- movement/deletion of points on the track is now reflected in the timing window while it's open
+
+----------------------------------
+     -- 1.8.2 - 26/3/2022 --
 
 - audio ids no longer have to be numeric
 - editor no longer tries to load when cancelling a select audio prompt
@@ -7,7 +19,7 @@
 - added anchoring bezier nodes (shift + a by default)
 
 ----------------------------------
-     -- 1.8.1 - 23/3/2021 --
+     -- 1.8.1 - 23/3/2022 --
 
 - added option to import files if audio failed to download
 - fixed clicking copy and return buttons with click to place enabled

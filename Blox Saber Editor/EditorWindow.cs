@@ -137,7 +137,7 @@ namespace Sound_Space_Editor
 			this.WindowState = OpenTK.WindowState.Maximized;
 			Icon = Resources.icon;
 			VSync = VSyncMode.On;
-            TargetUpdatePeriod = 1.0 / 20.0;
+			TargetUpdatePeriod = 1.0 / 20.0;
 
 			//CheckForUpdates();
 
@@ -255,6 +255,14 @@ namespace Sound_Space_Editor
 
 				MessageBox.Show("Colors have been reset to default beacuse one or more were invalid.");
 			}
+		}
+
+		private void ResetPoints(bool updatelist)
+        {
+			GuiTrack.BPMs = GuiTrack.BPMs.OrderBy(o => o.Ms).ToList();
+
+			if (updatelist && TimingsWindow.inst != null)
+				TimingsWindow.inst.ResetList(_draggedPoint != null ? GuiTrack.BPMs.IndexOf(_draggedPoint) : 0);
 		}
 
 		public void UpdateActivity(string state)
@@ -1086,14 +1094,14 @@ namespace Sound_Space_Editor
 						UndoRedo.AddUndoRedo("MOVE POINT", () =>
 						{
 							point.Ms = start;
-							GuiTrack.BPMs = GuiTrack.BPMs.OrderBy(o => o.Ms).ToList();
+							ResetPoints(true);
 						}, () =>
 						{
 							point.Ms = start + diff;
-							GuiTrack.BPMs = GuiTrack.BPMs.OrderBy(o => o.Ms).ToList();
+							ResetPoints(true);
 						});
 
-						GuiTrack.BPMs = GuiTrack.BPMs.OrderBy(o => o.Ms).ToList();
+						ResetPoints(true);
 					}
                 }
             }
@@ -1590,10 +1598,10 @@ namespace Sound_Space_Editor
 						}
 						return;
 					case "Delete":
-						if (SelectedNotes.Count > 0)
-                        {
-							if (editor.AllowInput())
-							{
+						if (editor.AllowInput())
+						{
+							if (SelectedNotes.Count > 0)
+                            {
 								var toRemove = new List<Note>(SelectedNotes);
 
 								Notes.RemoveAll(toRemove);
@@ -1609,6 +1617,40 @@ namespace Sound_Space_Editor
 								SelectedNotes.Clear();
 								_draggingNoteGrid = false;
 								_draggingNoteTimeline = false;
+							}
+							if (_draggedPoint != null)
+                            {
+								var toRemove = new BPM(_draggedPoint.bpm, _draggedPoint.Ms);
+
+								BPM pointtodel = new BPM(0,0);
+								foreach (var point in GuiTrack.BPMs)
+                                {
+									if (point.bpm == toRemove.bpm && point.Ms == toRemove.Ms)
+										pointtodel = point;
+                                }
+								GuiTrack.BPMs.Remove(pointtodel);
+
+								GuiTrack.BPMs.Remove(toRemove);
+
+								UndoRedo.AddUndoRedo("DELETE POINT", () =>
+                                {
+									GuiTrack.BPMs.Add(toRemove);
+
+									ResetPoints(true);
+								}, () =>
+                                {
+									BPM pointtodelr = new BPM(0, 0);
+									foreach (var point in GuiTrack.BPMs)
+									{
+										if (point.bpm == toRemove.bpm && point.Ms == toRemove.Ms)
+											pointtodelr = point;
+									}
+									GuiTrack.BPMs.Remove(pointtodelr);
+
+									ResetPoints(true);
+								});
+
+								ResetPoints(true);
 							}
 						}
 						return;
@@ -2416,7 +2458,7 @@ namespace Sound_Space_Editor
 
 				_draggedPoint.Ms = time;
 
-				GuiTrack.BPMs = GuiTrack.BPMs.OrderBy(o => o.Ms).ToList();
+				ResetPoints(false);
 			}
         }
 
@@ -2663,9 +2705,9 @@ namespace Sound_Space_Editor
 												oldformat = true;
 											}
 										}
-										
-										GuiTrack.BPMs = GuiTrack.BPMs.OrderBy(o => o.Ms).ToList();
-                                    }
+
+										ResetPoints(true);
+									}
 
 									//GuiTrack.Bpm = (float)bpm;
 								}
