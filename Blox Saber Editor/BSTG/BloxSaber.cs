@@ -189,11 +189,8 @@ namespace Blox_Saber_The_Game
 				while (this._mainThreadQueue.Count > 0)
 				{
 					Action action = this._mainThreadQueue.Dequeue();
-					if (action != null)
-					{
-						action();
-					}
-				}
+                    action?.Invoke();
+                }
 			}
 			this._tickTimer += (double)((float)e.Time);
 			this._colorTransition = Mathf.Clamp(this._colorTransition + (float)e.Time * 6f, 0f, 1f);
@@ -417,11 +414,8 @@ namespace Blox_Saber_The_Game
 		{
 			if (Thread.CurrentThread == this._mainThread)
 			{
-				if (a != null)
-				{
-					a();
-				}
-				return;
+                a?.Invoke();
+                return;
 			}
 			Queue<Action> mainThreadQueue = this._mainThreadQueue;
 			lock (mainThreadQueue)

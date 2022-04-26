@@ -37,3 +37,34 @@ C:\Users\tom\repos\Sound-Space-Quantum-Editor\Blox Saber Editor\obj\Release\Blox
 C:\Users\tom\repos\Sound-Space-Quantum-Editor\Blox Saber Editor\obj\Release\Blox Saber Editor.csproj.CopyComplete
 C:\Users\tom\repos\Sound-Space-Quantum-Editor\Blox Saber Editor\obj\Release\Sound Space Quantum Editor.exe
 C:\Users\tom\repos\Sound-Space-Quantum-Editor\Blox Saber Editor\obj\Release\Sound Space Quantum Editor.pdb
+V:\Downloads\SSQE Dev\Sound-Space-Quantum-Editor\Blox Saber Editor\bin\Release\x86\bassasio.dll
+V:\Downloads\SSQE Dev\Sound-Space-Quantum-Editor\Blox Saber Editor\bin\Release\x64\bassasio.dll
+V:\Downloads\SSQE Dev\Sound-Space-Quantum-Editor\Blox Saber Editor\bin\Release\ProgramDependencies\bass.dll
+V:\Downloads\SSQE Dev\Sound-Space-Quantum-Editor\Blox Saber Editor\bin\Release\ProgramDependencies\bassasio.dll
+V:\Downloads\SSQE Dev\Sound-Space-Quantum-Editor\Blox Saber Editor\bin\Release\ProgramDependencies\bass_fx.dll
+V:\Downloads\SSQE Dev\Sound-Space-Quantum-Editor\Blox Saber Editor\bin\Release\ProgramDependencies\discord_game_sdk.dll
+V:\Downloads\SSQE Dev\Sound-Space-Quantum-Editor\Blox Saber Editor\bin\Release\ProgramDependencies\freetype.dll
+V:\Downloads\SSQE Dev\Sound-Space-Quantum-Editor\Blox Saber Editor\bin\Release\Sound Space Quantum Editor.exe.config
+V:\Downloads\SSQE Dev\Sound-Space-Quantum-Editor\Blox Saber Editor\bin\Release\Sound Space Quantum Editor.exe.manifest
+V:\Downloads\SSQE Dev\Sound-Space-Quantum-Editor\Blox Saber Editor\bin\Release\Sound Space Quantum Editor.application
+V:\Downloads\SSQE Dev\Sound-Space-Quantum-Editor\Blox Saber Editor\bin\Release\Sound Space Quantum Editor.exe
+V:\Downloads\SSQE Dev\Sound-Space-Quantum-Editor\Blox Saber Editor\bin\Release\Sound Space Quantum Editor.pdb
+V:\Downloads\SSQE Dev\Sound-Space-Quantum-Editor\Blox Saber Editor\bin\Release\Bass.Net.dll
+V:\Downloads\SSQE Dev\Sound-Space-Quantum-Editor\Blox Saber Editor\bin\Release\OpenTK.dll
+V:\Downloads\SSQE Dev\Sound-Space-Quantum-Editor\Blox Saber Editor\bin\Release\System.Json.dll
+V:\Downloads\SSQE Dev\Sound-Space-Quantum-Editor\Blox Saber Editor\bin\Release\Bass.Net.xml
+V:\Downloads\SSQE Dev\Sound-Space-Quantum-Editor\Blox Saber Editor\bin\Release\OpenTK.pdb
+V:\Downloads\SSQE Dev\Sound-Space-Quantum-Editor\Blox Saber Editor\bin\Release\OpenTK.xml
+V:\Downloads\SSQE Dev\Sound-Space-Quantum-Editor\Blox Saber Editor\bin\Release\System.Json.xml
+V:\Downloads\SSQE Dev\Sound-Space-Quantum-Editor\Blox Saber Editor\obj\Release\Blox Saber Editor.csprojAssemblyReference.cache
+V:\Downloads\SSQE Dev\Sound-Space-Quantum-Editor\Blox Saber Editor\obj\Release\Sound_Space_Editor.BookmarkSetup.resources
+V:\Downloads\SSQE Dev\Sound-Space-Quantum-Editor\Blox Saber Editor\obj\Release\Sound_Space_Editor.BPMTapper.resources
+V:\Downloads\SSQE Dev\Sound-Space-Quantum-Editor\Blox Saber Editor\obj\Release\Sound_Space_Editor.Properties.Resources.resources
+V:\Downloads\SSQE Dev\Sound-Space-Quantum-Editor\Blox Saber Editor\obj\Release\Sound_Space_Editor.TimingsWindow.resources
+V:\Downloads\SSQE Dev\Sound-Space-Quantum-Editor\Blox Saber Editor\obj\Release\Blox Saber Editor.csproj.GenerateResource.cache
+V:\Downloads\SSQE Dev\Sound-Space-Quantum-Editor\Blox Saber Editor\obj\Release\Blox Saber Editor.csproj.CoreCompileInputs.cache
+V:\Downloads\SSQE Dev\Sound-Space-Quantum-Editor\Blox Saber Editor\obj\Release\Sound Space Quantum Editor.exe.manifest
+V:\Downloads\SSQE Dev\Sound-Space-Quantum-Editor\Blox Saber Editor\obj\Release\Sound Space Quantum Editor.application
+V:\Downloads\SSQE Dev\Sound-Space-Quantum-Editor\Blox Saber Editor\obj\Release\Blox Saber Editor.csproj.CopyComplete
+V:\Downloads\SSQE Dev\Sound-Space-Quantum-Editor\Blox Saber Editor\obj\Release\Sound Space Quantum Editor.exe
+V:\Downloads\SSQE Dev\Sound-Space-Quantum-Editor\Blox Saber Editor\obj\Release\Sound Space Quantum Editor.pdb

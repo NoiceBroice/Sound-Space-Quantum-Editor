@@ -103,3 +103,7 @@ V:\Downloads\SSQE Dev\Sound-Space-Quantum-Editor\Blox Saber Editor\obj\Debug\Blo
 V:\Downloads\SSQE Dev\Sound-Space-Quantum-Editor\Blox Saber Editor\obj\Debug\Blox Saber Editor.csproj.CopyComplete
 V:\Downloads\SSQE Dev\Sound-Space-Quantum-Editor\Blox Saber Editor\obj\Debug\Sound Space Quantum Editor.exe
 V:\Downloads\SSQE Dev\Sound-Space-Quantum-Editor\Blox Saber Editor\obj\Debug\Sound Space Quantum Editor.pdb
+V:\Downloads\SSQE Dev\Sound-Space-Quantum-Editor\Blox Saber Editor\bin\Debug\Sound Space Quantum Editor.exe.manifest
+V:\Downloads\SSQE Dev\Sound-Space-Quantum-Editor\Blox Saber Editor\bin\Debug\Sound Space Quantum Editor.application
+V:\Downloads\SSQE Dev\Sound-Space-Quantum-Editor\Blox Saber Editor\obj\Debug\Sound Space Quantum Editor.exe.manifest
+V:\Downloads\SSQE Dev\Sound-Space-Quantum-Editor\Blox Saber Editor\obj\Debug\Sound Space Quantum Editor.application

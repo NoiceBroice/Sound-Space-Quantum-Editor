@@ -139,7 +139,7 @@ namespace Sound_Space_Editor
 			VSync = VSyncMode.On;
             TargetUpdatePeriod = 1.0 / 20.0;
 
-			CheckForUpdates();
+			//CheckForUpdates();
 
 			//TargetRenderFrequency = 60;
 
@@ -177,7 +177,7 @@ namespace Sound_Space_Editor
 				lobbyManager = discord.GetLobbyManager();
 			}
 		}
-
+		/*
 		void CheckForUpdates()
         {
 			var versionInfo = FileVersionInfo.GetVersionInfo(Application.ExecutablePath);
@@ -235,6 +235,7 @@ namespace Sound_Space_Editor
 				MessageBox.Show("Failed to check for updates", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 		}
+		*/
 
 		public void UpdateColors()
 		{
